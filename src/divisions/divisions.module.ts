@@ -5,7 +5,7 @@ import { Division } from './entities/division.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  // imports: [TypeOrmModule.forFeature([Division])],
+  imports: [TypeOrmModule.forRoot(),TypeOrmModule.forFeature([Division])],
   controllers: [DivisionsController],
   providers: [DivisionsService]
 })
