@@ -2,10 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UpazilasService } from '../services/upazilas.service';
 import { CreateUpazilaDto } from '../dto/create-upazila.dto';
 import { UpdateUpazilaDto } from '../dto/update-upazila.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Upazilas')
+@Controller({
+  version: '1',
+  path: 'upazilas',
+})
 @Controller('upazilas')
 export class UpazilasController {
-  constructor(private readonly upazilasService: UpazilasService) {}
+  constructor(private readonly upazilasService: UpazilasService) { }
 
   @Post()
   create(@Body() createUpazilaDto: CreateUpazilaDto) {

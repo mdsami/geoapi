@@ -2,10 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ZoneService } from '../services/zone.service';
 import { CreateZoneDto } from '../dto/create-zone.dto';
 import { UpdateZoneDto } from '../dto/update-zone.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Zone')
+@Controller({
+  version: '1',
+  path: 'zone',
+})
 @Controller('zone')
 export class ZoneController {
-  constructor(private readonly zoneService: ZoneService) {}
+  constructor(private readonly zoneService: ZoneService) { }
 
   @Post()
   create(@Body() createZoneDto: CreateZoneDto) {

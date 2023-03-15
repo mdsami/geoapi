@@ -2,7 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PostofficesService } from '../services/postoffices.service';
 import { CreatePostofficeDto } from '../dto/create-postoffice.dto';
 import { UpdatePostofficeDto } from '../dto/update-postoffice.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Postoffices')
+@Controller({
+  version: '1',
+  path: 'postoffices',
+})
 @Controller('postoffices')
 export class PostofficesController {
   constructor(private readonly postofficesService: PostofficesService) {}

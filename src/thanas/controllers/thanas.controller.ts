@@ -2,10 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ThanasService } from '../services/thanas.service';
 import { CreateThanaDto } from '../dto/create-thana.dto';
 import { UpdateThanaDto } from '../dto/update-thana.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Thanas')
+@Controller({
+  version: '1',
+  path: 'thanas',
+})
 @Controller('thanas')
 export class ThanasController {
-  constructor(private readonly thanasService: ThanasService) {}
+  constructor(private readonly thanasService: ThanasService) { }
 
   @Post()
   create(@Body() createThanaDto: CreateThanaDto) {
