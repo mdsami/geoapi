@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DatabaseModule } from './database';
 import { DivisionsModule } from './divisions/divisions.module';
 import { DistrictsModule } from './districts/districts.module';
 import { ThanasModule } from './thanas/thanas.module';

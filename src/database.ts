@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { Division } from './divisions/entities/division.entity';
 
 
 @Module({
@@ -20,7 +21,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         // ssl: { rejectUnauthorized: false },
         logger: new DatabaseLogger(),
         autoLoadEntities: true,
-        entities:[],
+        entities:[Division],
         // entities: [__dirname + 'entities/**/*.entity{.ts,.js}'],
         synchronize: true,
         namingStrategy: new SnakeNamingStrategy(),
