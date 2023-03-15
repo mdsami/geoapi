@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDivisionDto } from './dto/create-division.dto';
-import { UpdateDivisionDto } from './dto/update-division.dto';
+import { CreateDivisionDto } from '../dto/create-division.dto';
+import { UpdateDivisionDto } from '../dto/update-division.dto';
 
 @Injectable()
 export class DivisionsService {
