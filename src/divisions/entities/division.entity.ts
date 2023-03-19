@@ -20,7 +20,7 @@ import {
     name: string;
 
     @Column()
-    bnname: string;
+    namebn: string;
 
     @Column()
     lat: number;
@@ -37,6 +37,6 @@ import {
 
   export class DivisionFillableFields {
     name: string;
-    bnname: string;
+    namebn: string;
 }
 
