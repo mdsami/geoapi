@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDivisionDto } from '../dto/create-division.dto';
 import { UpdateDivisionDto } from '../dto/update-division.dto';
+import { Division } from '../entities/division.entity';
 
 @Injectable()
 export class DivisionsService {
@@ -8,19 +9,21 @@ export class DivisionsService {
     return 'This action adds a new division';
   }
 
-  findAll() {
-    return `This action returns all divisions`;
+  async findAll() {
+    const division  = await Division.find();
+    return division;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} division`;
+  async findOne(id: number) {
+    return await Division.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateDivisionDto: UpdateDivisionDto) {
-    return `This action updates a #${id} division`;
+  async update(id: number, updateDivisionDto: UpdateDivisionDto) {
+    return await Division.update({ id:id }, updateDivisionDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} division`;
+
+  async remove(id: number) {
+    return await Division.delete({ id:id });
   }
 }

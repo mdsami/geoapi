@@ -22,10 +22,10 @@ import {
     @Column()
     namebn: string;
 
-    @Column()
+    @Column({ type: 'double', default: 0, })
     lat: number;
 
-    @Column()
+    @Column({ type: 'double',  default: 0, })
     long: number;
 
     @CreateDateColumn()
@@ -37,6 +37,6 @@ import {
 
   export class DivisionFillableFields {
     name: string;
-    namebn: string;
+    bnname: string;
 }
 
