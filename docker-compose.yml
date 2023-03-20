@@ -13,15 +13,22 @@ services:
       - .env
     command: yarn start:dev
     environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      DB_DATABASE: geoapi
       PORT: 3000
+    depends_on:
+      - db
   db:
-    image: mysql
+    image: mariadb:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: geoapi
     ports:
-      - "3308:3306"
+      - "3306:3306"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
