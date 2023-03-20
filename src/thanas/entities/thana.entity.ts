@@ -1,3 +1,4 @@
+import { District } from './../../districts/entities/district.entity';
 import {
     BaseEntity,
     Column,
@@ -8,6 +9,7 @@ import {
     Unique,
     JoinColumn,
     UpdateDateColumn,
+    OneToMany,
   } from 'typeorm';
 
   @Entity()
@@ -28,10 +30,10 @@ import {
     @Column()
     long: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type: "timestamp"})
     createdAt: Date;
   
-    @UpdateDateColumn()
+    @UpdateDateColumn({type: "timestamp"})
     updatedAt: Date;
   }
 
