@@ -1,4 +1,5 @@
 import { Division } from 'src/divisions/entities/division.entity';
+import { Upazila } from 'src/upazilas/entities/upazila.entity';
 import {
     BaseEntity,
     Column,
@@ -9,6 +10,7 @@ import {
     Unique,
     JoinColumn,
     UpdateDateColumn,
+    OneToMany,
   } from 'typeorm';
 
   @Entity()
@@ -23,10 +25,10 @@ import {
     @Column()
     namebn: string;
 
-    @Column()
+    @Column({ type: 'double', nullable: true, default: 0, })
     lat: number;
 
-    @Column()
+    @Column({ type: 'double',nullable: true,  default: 0, })
     long: number;
 
     // @Column()
@@ -43,6 +45,15 @@ import {
   })
   @JoinColumn({name:'division_id'})
   division:Division;
+
+
+  @OneToMany(()=> Upazila,(upazila) => upazila.district,{
+    onDelete: "CASCADE",
+    // cascade: ["insert", "update"],
+})
+upazila: Upazila[]
+
+
   }
 
   export class DistrictFillableFields {

@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreateDistrictDto } from '../dto/create-district.dto';
 import { UpdateDistrictDto } from '../dto/update-district.dto';
+import { District } from '../entities/district.entity';
 
 @Injectable()
 export class DistrictsService {
@@ -8,13 +9,20 @@ export class DistrictsService {
     return 'This action adds a new district';
   }
 
-  findAll() {
-    return `This action returns all districts`;
+  async findAll() {
+    const district  = await District.find();
+    return district;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} district`;
-  }
+  async findOne(id: number) {
+    const response  = await District.findOne({ where: { id: id },relations: ['upazila'] });
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'success',
+      data: response
+    }
+  
+}
 
   update(id: number, updateDistrictDto: UpdateDistrictDto) {
     return `This action updates a #${id} district`;

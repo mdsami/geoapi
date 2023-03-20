@@ -1,3 +1,5 @@
+import { District } from 'src/districts/entities/district.entity';
+import { Division } from 'src/divisions/entities/division.entity';
 import {
     BaseEntity,
     Column,
@@ -22,17 +24,31 @@ import {
     @Column()
     namebn: string;
 
-    @Column()
+    @Column({ type: 'double',nullable: true, default: 0, })
     lat: number;
 
-    @Column()
+    @Column({ type: 'double',nullable: true, default: 0, })
     long: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'timestamp'})
     createdAt: Date;
   
-    @UpdateDateColumn()
+    @UpdateDateColumn({type:'timestamp'})
     updatedAt: Date;
+
+    @ManyToOne(() => Division,(division) => division.district,{
+      onDelete: "CASCADE",
+  })
+  @JoinColumn({name:'division_id'})
+  division:Division;
+  
+    @ManyToOne(() => District,(district) => district.upazila,{
+      onDelete: "CASCADE",
+  })
+  @JoinColumn({name:'district_id'})
+  district:District;
+
+
   }
 
   export class UpazilaFillableFields {

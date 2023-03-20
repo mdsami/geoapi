@@ -24,10 +24,10 @@ import {
     @Column()
     namebn: string;
 
-    @Column()
+    @Column({ type: 'double',nullable: true, default: 0, })
     lat: number;
 
-    @Column()
+    @Column({ type: 'double',nullable: true, default: 0, })
     long: number;
 
     @CreateDateColumn({type: "timestamp"})
