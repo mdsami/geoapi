@@ -1,3 +1,4 @@
+import { District } from 'src/districts/entities/district.entity';
 import {
     BaseEntity,
     Column,
@@ -8,6 +9,7 @@ import {
     Unique,
     JoinColumn,
     UpdateDateColumn,
+    OneToMany,
   } from 'typeorm';
 
   @Entity()
@@ -28,11 +30,17 @@ import {
     @Column({ type: 'double',  default: 0, })
     long: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({type:'timestamp'})
     createdAt: Date;
   
-    @UpdateDateColumn()
+    @UpdateDateColumn({type:'timestamp'})
     updatedAt: Date;
+
+    @OneToMany(()=> District,(district) => district.division,{
+      onDelete: "CASCADE",
+      cascade: ["insert", "update"],
+  })
+  district: District[]
   }
 
   export class DivisionFillableFields {

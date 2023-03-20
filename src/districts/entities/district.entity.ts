@@ -1,3 +1,4 @@
+import { Division } from 'src/divisions/entities/division.entity';
 import {
     BaseEntity,
     Column,
@@ -28,11 +29,20 @@ import {
     @Column()
     long: number;
 
+    // @Column()
+    // division_id: number;
+
     @CreateDateColumn()
     createdAt: Date;
   
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @ManyToOne(() => Division,(division) => division.district,{
+      onDelete: "CASCADE",
+  })
+  @JoinColumn({name:'division_id'})
+  division:Division;
   }
 
   export class DistrictFillableFields {

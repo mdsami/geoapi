@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreateDivisionDto } from '../dto/create-division.dto';
 import { UpdateDivisionDto } from '../dto/update-division.dto';
 import { Division } from '../entities/division.entity';
@@ -9,11 +9,20 @@ export class DivisionsService {
     return 'This action adds a new division';
   }
 
-  async findAll() {
-    const division  = await Division.find();
-    return division;
-  }
+  // async findAll() {
+  //   const division  = await Division.find();
+  //   return division;
+  // }
 
+
+  async findAll() {
+    const response  = await Division.find({ relations: ['district']});
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'success',
+      data: response
+    }
+  }
   async findOne(id: number) {
     return await Division.findOne({ where: { id: id } });
   }
