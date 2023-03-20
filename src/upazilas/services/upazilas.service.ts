@@ -10,6 +10,9 @@ export class UpazilasService {
 
   findAll() {
     return `This action returns all upazilas`;
+
+    // const upazila = await Upazila.find();
+    // return upazila;
   }
 
   findOne(id: number) {
