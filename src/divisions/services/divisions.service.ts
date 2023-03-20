@@ -10,7 +10,7 @@ export class DivisionsService {
   }
 
   async findAll() {
-    const division  = await Division.find();
+    const division = await Division.find();
     return division;
   }
 
@@ -27,24 +27,24 @@ export class DivisionsService {
   //   return await Division.findOne({ where: { id: id } });
   // }
 
-    async findOne(id: number) {
-      const response  = await Division.findOne({ where: { id: id },relations: ['district'] });
-      return {
-        statusCode: HttpStatus.OK,
-        message: 'success',
-        data: response
-      }
-    
+  async findOne(id: number) {
+    const response = await Division.findOne({ where: { id: id }, relations: ['district'] });
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'success',
+      data: response
+    }
+
   }
 
 
   async update(id: number, updateDivisionDto: UpdateDivisionDto) {
-    return await Division.update({ id:id }, updateDivisionDto);
+    return await Division.update({ id: id }, updateDivisionDto);
   }
 
 
   async remove(id: number) {
-    return await Division.delete({ id:id });
+    return await Division.delete({ id: id });
   }
 }
 function findOne(id: any, number: any) {
