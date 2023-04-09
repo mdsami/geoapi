@@ -1,4 +1,5 @@
 import { District } from 'src/districts/entities/district.entity';
+import { Division } from 'src/divisions/entities/division.entity';
 import {
   BaseEntity,
   Column,
@@ -23,10 +24,10 @@ export class Upazila extends BaseEntity {
   @Column()
   namebn: string;
 
-  @Column()
+  @Column({ nullable: true })
   lat: number;
 
-  @Column()
+  @Column({ nullable: true })
   long: number;
 
   @CreateDateColumn({ type: "timestamp" })
@@ -34,6 +35,16 @@ export class Upazila extends BaseEntity {
 
   @UpdateDateColumn({ type: "timestamp" })
   updatedAt: Date;
+
+  @ManyToOne(() => District, (district) => district.upazila, {
+    onDelete: "CASCADE",
+  })
+  district: District;
+
+  @ManyToOne(() => Division, (division) => division.upazila, {
+    onDelete: "CASCADE",
+  })
+  division: Division;
 }
 
 export class UpazilaFillableFields {

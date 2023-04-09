@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUpazilaDto } from '../dto/create-upazila.dto';
 import { UpdateUpazilaDto } from '../dto/update-upazila.dto';
+import { Upazila } from '../entities/upazila.entity';
 
 @Injectable()
 export class UpazilasService {
@@ -8,15 +9,17 @@ export class UpazilasService {
     return 'This action adds a new upazila';
   }
 
-  findAll() {
-    return `This action returns all upazilas`;
-
-    // const upazila = await Upazila.find();
-    // return upazila;
+  async findAll(): Promise<Upazila[]> {
+    const upazila = await Upazila.find();
+    return upazila;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} upazila`;
+  async findOne(id: number): Promise<Upazila> {
+    const upazila = await Upazila.findOne({ where: { id: id }, relations: ['district', 'division'] });
+    if (!upazila) {
+      throw new HttpException('Upazila not found', HttpStatus.NOT_FOUND);
+    }
+    return upazila;
   }
 
   update(id: number, updateUpazilaDto: UpdateUpazilaDto) {

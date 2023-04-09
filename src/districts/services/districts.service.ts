@@ -15,7 +15,7 @@ export class DistrictsService {
   }
 
   async findOne(id: number) {
-    const response = await District.findOne({ where: { id: id }, relations: ['district'] });
+    const response = await District.findOne({ where: { id: id }, relations: ['division'] });
     return {
       statusCode: HttpStatus.OK,
       message: 'success',
