@@ -1,4 +1,5 @@
 import { District } from 'src/districts/entities/district.entity';
+import { Upazila } from 'src/upazilas/entities/upazila.entity';
 import {
   BaseEntity,
   Column,
@@ -24,10 +25,10 @@ export class Division extends BaseEntity {
   @Column()
   namebn: string;
 
-  @Column({ type: 'double', default: 0, })
+  @Column({ type: 'double precision', default: 0, })
   lat: number;
 
-  @Column({ type: 'double', default: 0, })
+  @Column({ type: 'double precision', default: 0, })
   long: number;
 
   @CreateDateColumn({ type: 'timestamp' })
@@ -41,6 +42,12 @@ export class Division extends BaseEntity {
     cascade: ["insert", "update"],
   })
   district: District[]
+
+  @OneToMany(() => Upazila, (upazila) => upazila.division, {
+    onDelete: "CASCADE",
+    cascade: ["insert", "update"],
+  })
+  upazila: Upazila[]
 }
 
 export class DivisionFillableFields {
