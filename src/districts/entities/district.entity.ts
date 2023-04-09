@@ -42,6 +42,7 @@ export class District extends BaseEntity {
 
   @ManyToOne(() => Division, (division) => division.district, {
     onDelete: "CASCADE",
+    // eager: true,
   })
   @JoinColumn({ name: 'division_id' })
   division: Division;
