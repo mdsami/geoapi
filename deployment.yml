@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: geoapi-k8s
+  name: geoapi-k8s
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: geoapi-k8s
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: geoapi-k8s
+    spec:
+      containers:
+      - image: docker.io/mdsami/geoapi-k8s
+        name: webapp
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 3000
+status: {}

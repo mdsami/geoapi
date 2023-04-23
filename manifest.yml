@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: geoapi-k8s
+  name: geoapi-k8s
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: geoapi-k8s
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: geoapi-k8s
+    spec:
+      containers:
+      - image: geoapis.azurecr.io/mdsami/geoapi:v1
+        name:  geoapi-k8s
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 3000
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: geoapi-k8s
+  labels:
+    run: geoapi-k8s
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+  selector:
+    app: geoapi-k8s
+  type: LoadBalancer
