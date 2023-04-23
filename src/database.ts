@@ -21,7 +21,7 @@ import { Microarea } from './microareas/entities/microarea.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
+        type: 'mysql',
         host: configService.get('DB_HOST'),
         port: configService.get('DB_PORT'),
         username: configService.get('DB_USERNAME'),
@@ -30,7 +30,7 @@ import { Microarea } from './microareas/entities/microarea.entity';
         // ssl: { rejectUnauthorized: false },
         logger: new DatabaseLogger(),
         autoLoadEntities: true,
-        entities:[
+        entities: [
           Division,
           District,
           Thana,
@@ -48,4 +48,4 @@ import { Microarea } from './microareas/entities/microarea.entity';
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }
