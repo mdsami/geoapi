@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CityCorporationsService } from './city_corporations.service';
-import { CreateCityCorporationDto } from './dto/create-city_corporation.dto';
-import { UpdateCityCorporationDto } from './dto/update-city_corporation.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('City Corporations')

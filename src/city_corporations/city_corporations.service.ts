@@ -5,10 +5,6 @@ import { CityCorporation } from './entities/city_corporation.entity';
 
 @Injectable()
 export class CityCorporationsService {
-  create(createCityCorporationDto: CreateCityCorporationDto) {
-    return 'This action adds a new cityCorporation';
-  }
-
   async findAll(): Promise<CityCorporation[]> {
     return await CityCorporation.find();
   }
@@ -21,13 +17,5 @@ export class CityCorporationsService {
     }
 
     return cityCorp;
-  }
-
-  update(id: number, updateCityCorporationDto: UpdateCityCorporationDto) {
-    return `This action updates a #${id} cityCorporation`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} cityCorporation`;
   }
 }
