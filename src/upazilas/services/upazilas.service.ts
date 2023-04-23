@@ -5,10 +5,6 @@ import { Upazila } from '../entities/upazila.entity';
 
 @Injectable()
 export class UpazilasService {
-  create(createUpazilaDto: CreateUpazilaDto) {
-    return 'This action adds a new upazila';
-  }
-
   async findAll(): Promise<Upazila[]> {
     const upazila = await Upazila.find();
     return upazila;
@@ -20,13 +16,5 @@ export class UpazilasService {
       throw new HttpException('Upazila not found', HttpStatus.NOT_FOUND);
     }
     return upazila;
-  }
-
-  update(id: number, updateUpazilaDto: UpdateUpazilaDto) {
-    return `This action updates a #${id} upazila`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} upazila`;
   }
 }

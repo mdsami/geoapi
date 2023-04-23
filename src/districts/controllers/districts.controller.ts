@@ -11,12 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 })
 @Controller('districts')
 export class DistrictsController {
-  constructor(private readonly districtsService: DistrictsService) {}
-
-  @Post()
-  create(@Body() createDistrictDto: CreateDistrictDto) {
-    return this.districtsService.create(createDistrictDto);
-  }
+  constructor(private readonly districtsService: DistrictsService) { }
 
   @Get()
   findAll() {
@@ -26,15 +21,5 @@ export class DistrictsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.districtsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDistrictDto: UpdateDistrictDto) {
-    return this.districtsService.update(+id, updateDistrictDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.districtsService.remove(+id);
   }
 }

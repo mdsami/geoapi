@@ -12,7 +12,7 @@ import { UpdateMicroareaDto } from '../dto/update-microarea.dto';
 })
 @Controller('microareas')
 export class MicroareasController {
-  constructor(private readonly microareasService: MicroareasService) {}
+  constructor(private readonly microareasService: MicroareasService) { }
 
   @Post()
   create(@Body() createMicroareaDto: CreateMicroareaDto) {

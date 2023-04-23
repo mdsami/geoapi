@@ -13,11 +13,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class UpazilasController {
   constructor(private readonly upazilasService: UpazilasService) { }
 
-  @Post()
-  create(@Body() createUpazilaDto: CreateUpazilaDto) {
-    return this.upazilasService.create(createUpazilaDto);
-  }
-
   @Get()
   findAll() {
     return this.upazilasService.findAll();
@@ -26,15 +21,5 @@ export class UpazilasController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.upazilasService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUpazilaDto: UpdateUpazilaDto) {
-    return this.upazilasService.update(+id, updateUpazilaDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.upazilasService.remove(+id);
   }
 }
