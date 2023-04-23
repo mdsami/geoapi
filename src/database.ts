@@ -12,6 +12,7 @@ import { Municipality } from './municipalities/entities/municipality.entity';
 import { Zone } from './zone/entities/zone.entity';
 import { Union } from './unions/entities/union.entity';
 import { Microarea } from './microareas/entities/microarea.entity';
+import { CityCorporation } from './city_corporations/entities/city_corporation.entity';
 
 
 
@@ -33,13 +34,14 @@ import { Microarea } from './microareas/entities/microarea.entity';
         entities: [
           Division,
           District,
+          CityCorporation,
           Thana,
           Upazila,
           Ward,
           Union,
           Municipality,
           Zone,
-          Microarea
+          Microarea,
         ],
         // entities: [__dirname + 'entities/**/*.entity{.ts,.js}'],
         synchronize: true,

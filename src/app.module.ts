@@ -14,6 +14,7 @@ import { ZoneModule } from './zone/zone.module';
 import { MicroareasModule } from './microareas/microareas.module';
 import LogsMiddleware from './Logger.middleware';
 import { ConfigModule } from '@nestjs/config';
+import { CityCorporationsModule } from './city_corporations/city_corporations.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ConfigModule } from '@nestjs/config';
     UpazilasModule,
     ZoneModule,
     MicroareasModule,
+    CityCorporationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

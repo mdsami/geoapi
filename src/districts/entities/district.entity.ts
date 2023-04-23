@@ -1,3 +1,4 @@
+import { CityCorporation } from 'src/city_corporations/entities/city_corporation.entity';
 import { Upazila } from './../../upazilas/entities/upazila.entity';
 import { Division } from 'src/divisions/entities/division.entity';
 import {
@@ -7,7 +8,6 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique,
   JoinColumn,
   UpdateDateColumn,
   OneToMany,
@@ -52,6 +52,12 @@ export class District extends BaseEntity {
     cascade: ["insert", "update"],
   })
   upazila: Upazila[]
+
+  @OneToMany(() => CityCorporation, (city_corporation) => city_corporation.district, {
+    onDelete: "CASCADE",
+    cascade: ["insert", "update"],
+  })
+  city_corporation: CityCorporation[]
 }
 
 export class DistrictFillableFields {

@@ -1,3 +1,4 @@
+import { CityCorporation } from 'src/city_corporations/entities/city_corporation.entity';
 import { District } from 'src/districts/entities/district.entity';
 import { Upazila } from 'src/upazilas/entities/upazila.entity';
 import {
@@ -48,6 +49,12 @@ export class Division extends BaseEntity {
     cascade: ["insert", "update"],
   })
   upazila: Upazila[]
+
+  @OneToMany(() => CityCorporation, (cityCorporation) => cityCorporation.division, {
+    onDelete: "CASCADE",
+    cascade: ["insert", "update"],
+  })
+  city_corporation: CityCorporation[]
 }
 
 export class DivisionFillableFields {

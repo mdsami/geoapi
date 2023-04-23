@@ -1,1 +1,0 @@
-{"version":3,"file":"postoffices.module.js","sourceRoot":"","sources":["../../src/postoffices/postoffices.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,wEAAoE;AACpE,iFAA6E;AAMtE,IAAM,iBAAiB,GAAvB,MAAM,iBAAiB;CAAG,CAAA;AAApB,iBAAiB;IAJ7B,IAAA,eAAM,EAAC;QACN,WAAW,EAAE,CAAC,8CAAqB,CAAC;QACpC,SAAS,EAAE,CAAC,wCAAkB,CAAC;KAChC,CAAC;GACW,iBAAiB,CAAG;AAApB,8CAAiB"}
