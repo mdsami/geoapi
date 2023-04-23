@@ -13,11 +13,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class ThanasController {
   constructor(private readonly thanasService: ThanasService) { }
 
-  @Post()
-  create(@Body() createThanaDto: CreateThanaDto) {
-    return this.thanasService.create(createThanaDto);
-  }
-
   @Get()
   findAll() {
     return this.thanasService.findAll();
@@ -26,15 +21,5 @@ export class ThanasController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.thanasService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateThanaDto: UpdateThanaDto) {
-    return this.thanasService.update(+id, updateThanaDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.thanasService.remove(+id);
   }
 }

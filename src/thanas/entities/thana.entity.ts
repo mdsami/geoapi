@@ -1,3 +1,4 @@
+import { Division } from 'src/divisions/entities/division.entity';
 import { District } from './../../districts/entities/district.entity';
 import {
   BaseEntity,
@@ -24,10 +25,10 @@ export class Thana extends BaseEntity {
   @Column()
   namebn: string;
 
-  @Column()
+  @Column({ nullable: true, default: 0, type: 'double precision' })
   lat: number;
 
-  @Column()
+  @Column({ nullable: true, default: 0, type: 'double precision' })
   long: number;
 
   @CreateDateColumn({ type: "timestamp" })
@@ -35,6 +36,14 @@ export class Thana extends BaseEntity {
 
   @UpdateDateColumn({ type: "timestamp" })
   updatedAt: Date;
+
+  @ManyToOne(() => Division, (division) => division.thana)
+  @JoinColumn({ name: 'division_id' })
+  division: Division;
+
+  @ManyToOne(() => District, (district) => district.thana)
+  @JoinColumn({ name: 'district_id' })
+  district: District;
 }
 
 export class ThanaFillableFields {

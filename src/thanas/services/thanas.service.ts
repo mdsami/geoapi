@@ -1,26 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateThanaDto } from '../dto/create-thana.dto';
 import { UpdateThanaDto } from '../dto/update-thana.dto';
+import { Thana } from '../entities/thana.entity';
 
 @Injectable()
 export class ThanasService {
-  create(createThanaDto: CreateThanaDto) {
-    return 'This action adds a new thana';
+  async findAll(): Promise<Thana[]> {
+    return await Thana.find();
   }
 
-  findAll() {
-    return `This action returns all thanas`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} thana`;
-  }
-
-  update(id: number, updateThanaDto: UpdateThanaDto) {
-    return `This action updates a #${id} thana`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} thana`;
+  async findOne(id: number): Promise<Thana> {
+    const thana = await Thana.findOne({ where: { id: id }, relations: ['division', 'district'] });
+    if (!thana) {
+      throw new NotFoundException('Not found');
+    }
+    return thana;
   }
 }
