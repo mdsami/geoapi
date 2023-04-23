@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { Municipality } from 'src/municipalities/entities/municipality.entity';
 import { Thana } from 'src/thanas/entities/thana.entity';
+import { Union } from 'src/unions/entities/union.entity';
 
 @Entity()
 export class District extends BaseEntity {
@@ -72,6 +73,12 @@ export class District extends BaseEntity {
     cascade: ["insert", "update"],
   })
   thana: Thana[]
+
+  @OneToMany(() => Union, (union) => union.district, {
+    onDelete: "CASCADE",
+    cascade: ["insert", "update"],
+  })
+  union: Union[]
 }
 
 export class DistrictFillableFields {

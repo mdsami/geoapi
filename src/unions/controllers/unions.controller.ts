@@ -11,12 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 })
 @Controller('unions')
 export class UnionsController {
-  constructor(private readonly unionsService: UnionsService) {}
-
-  @Post()
-  create(@Body() createUnionDto: CreateUnionDto) {
-    return this.unionsService.create(createUnionDto);
-  }
+  constructor(private readonly unionsService: UnionsService) { }
 
   @Get()
   findAll() {
@@ -26,15 +21,5 @@ export class UnionsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.unionsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUnionDto: UpdateUnionDto) {
-    return this.unionsService.update(+id, updateUnionDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.unionsService.remove(+id);
   }
 }

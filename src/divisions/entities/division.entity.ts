@@ -2,6 +2,7 @@ import { CityCorporation } from 'src/city_corporations/entities/city_corporation
 import { District } from 'src/districts/entities/district.entity';
 import { Municipality } from 'src/municipalities/entities/municipality.entity';
 import { Thana } from 'src/thanas/entities/thana.entity';
+import { Union } from 'src/unions/entities/union.entity';
 import { Upazila } from 'src/upazilas/entities/upazila.entity';
 import {
   BaseEntity,
@@ -69,6 +70,12 @@ export class Division extends BaseEntity {
     cascade: ["insert", "update"],
   })
   thana: Thana[]
+
+  @OneToMany(() => Union, (union) => union.division, {
+    onDelete: "CASCADE",
+    cascade: ["insert", "update"],
+  })
+  union: Union[]
 }
 
 export class DivisionFillableFields {

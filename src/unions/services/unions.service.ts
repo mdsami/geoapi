@@ -1,26 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUnionDto } from '../dto/create-union.dto';
 import { UpdateUnionDto } from '../dto/update-union.dto';
+import { Union } from '../entities/union.entity';
 
 @Injectable()
 export class UnionsService {
-  create(createUnionDto: CreateUnionDto) {
-    return 'This action adds a new union';
+
+  async findAll(): Promise<Union[]> {
+    return await Union.find();
   }
 
-  findAll() {
-    return `This action returns all unions`;
-  }
+  async findOne(id: number): Promise<Union> {
+    const union = await Union.findOne({ where: { id: id }, relations: ['division', 'district', 'upazila'] })
 
-  findOne(id: number) {
-    return `This action returns a #${id} union`;
-  }
+    if (!union) {
+      throw new NotFoundException('Not found');
+    }
 
-  update(id: number, updateUnionDto: UpdateUnionDto) {
-    return `This action updates a #${id} union`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} union`;
+    return union;
   }
 }

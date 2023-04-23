@@ -1,3 +1,4 @@
+import { Union } from './../../unions/entities/union.entity';
 import { District } from 'src/districts/entities/district.entity';
 import { Division } from 'src/divisions/entities/division.entity';
 import { Municipality } from 'src/municipalities/entities/municipality.entity';
@@ -48,11 +49,17 @@ export class Upazila extends BaseEntity {
   })
   division: Division;
 
-  @OneToMany(() => Municipality, (municipality) => municipality.division, {
+  @OneToMany(() => Municipality, (municipality) => municipality.upazila, {
     // onDelete: "CASCADE",
     // cascade: ["insert", "update"],
   })
   municipality: Municipality[];
+
+  @OneToMany(() => Union, (union) => union.upazila, {
+    // onDelete: "CASCADE",
+    // cascade: ["insert", "update"],
+  })
+  union: Union[];
 }
 
 export class UpazilaFillableFields {
