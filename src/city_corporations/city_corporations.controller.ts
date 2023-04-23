@@ -2,10 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CityCorporationsService } from './city_corporations.service';
 import { CreateCityCorporationDto } from './dto/create-city_corporation.dto';
 import { UpdateCityCorporationDto } from './dto/update-city_corporation.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Divisions')
+@Controller({
+  version: '1',
+  path: 'city-corporations',
+})
 @Controller('city-corporations')
 export class CityCorporationsController {
-  constructor(private readonly cityCorporationsService: CityCorporationsService) {}
+  constructor(private readonly cityCorporationsService: CityCorporationsService) { }
 
   @Post()
   create(@Body() createCityCorporationDto: CreateCityCorporationDto) {
