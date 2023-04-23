@@ -12,6 +12,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
+import { Municipality } from 'src/municipalities/entities/municipality.entity';
 
 @Entity()
 export class District extends BaseEntity {
@@ -58,6 +59,12 @@ export class District extends BaseEntity {
     cascade: ["insert", "update"],
   })
   city_corporation: CityCorporation[]
+
+  @OneToMany(() => Municipality, (municipality) => municipality.district, {
+    onDelete: "CASCADE",
+    cascade: ["insert", "update"],
+  })
+  municipality: Municipality[]
 }
 
 export class DistrictFillableFields {

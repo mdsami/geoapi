@@ -1,26 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { CreateMunicipalityDto } from '../dto/create-municipality.dto';
-import { UpdateMunicipalityDto } from '../dto/update-municipality.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Municipality } from '../entities/municipality.entity';
 
 @Injectable()
 export class MunicipalitiesService {
-  create(createMunicipalityDto: CreateMunicipalityDto) {
-    return 'This action adds a new municipality';
+
+  async findAll(): Promise<Municipality[]> {
+    return await Municipality.find();
   }
 
-  findAll() {
-    return `This action returns all municipalities`;
-  }
+  async findOne(id: number): Promise<Municipality> {
+    const municipality = await Municipality.findOne({ where: { id: id }, relations: ['division', 'district'] });
 
-  findOne(id: number) {
-    return `This action returns a #${id} municipality`;
-  }
+    if (!municipality) {
+      throw new NotFoundException('Not found');
+    }
 
-  update(id: number, updateMunicipalityDto: UpdateMunicipalityDto) {
-    return `This action updates a #${id} municipality`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} municipality`;
+    return municipality;
   }
 }

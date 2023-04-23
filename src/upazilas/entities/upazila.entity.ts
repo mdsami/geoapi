@@ -1,5 +1,6 @@
 import { District } from 'src/districts/entities/district.entity';
 import { Division } from 'src/divisions/entities/division.entity';
+import { Municipality } from 'src/municipalities/entities/municipality.entity';
 import {
   BaseEntity,
   Column,
@@ -10,6 +11,7 @@ import {
   Unique,
   JoinColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -45,6 +47,12 @@ export class Upazila extends BaseEntity {
     onDelete: "CASCADE",
   })
   division: Division;
+
+  @OneToMany(() => Municipality, (municipality) => municipality.division, {
+    // onDelete: "CASCADE",
+    // cascade: ["insert", "update"],
+  })
+  municipality: Municipality[];
 }
 
 export class UpazilaFillableFields {
